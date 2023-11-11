@@ -1,14 +1,12 @@
 const mongoose = require('mongoose');
+const dotenv = require('dotenv')
 const express = require("express");
 const app = express();
 
-const DB = "mongodb+srv://mern2023:92209986@mern2023.jngmyot.mongodb.net/practise?retryWrites=true&w=majority"
+dotenv.config({path: "./config.env"});
+const PORT = process.env.PORT;
 
-mongoose.connect(DB).then(()=>{
-    console.log(`Connection Successfull`);
-}).catch((err) => {
-    console.log(`Connection failed`);
-});
+
 
 const middleware = (req, res, next) =>{
     console.log("middleware is running");
@@ -37,7 +35,6 @@ app.get("/register", (req, res) => {
     res.status(200).send("Register yourself first")
 })
 
-const PORT = 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port:  ${PORT}`);
 })
