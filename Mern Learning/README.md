@@ -1,4 +1,5 @@
 # MERN Learning Topics
-- Create a server
-- Adding Middleware
-- Connect Mongodb backend
+1. Create a server
+2. Adding Middleware
+3. Connect Mongodb backend
+
