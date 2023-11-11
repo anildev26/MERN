@@ -1,9 +1,13 @@
 const express = require("express");
 const app = express();
 const dotenv = require('dotenv')
+
 dotenv.config({path: "./config.env"});
 require("./db/conn")
 const PORT = process.env.PORT;
+
+// importing DB userSchema from models
+const User = require("./models/userSchema")
 
 // Writing Middleware
 const middleware = (req, res, next) =>{

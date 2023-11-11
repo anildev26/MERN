@@ -8,8 +8,9 @@
 4. Creating DOTENV file 
     * .env file for securing data (dotenv.config({path: ".env file path"})) 
     * Storing db connection mongoose info on different DB folder and requiring inside app.js
-5. 
-    *
+5. Making userSchema in models folder
+    * Defining how data will be collected in front-end and what type of data will be stored in db via schema.
+    * Creating schema using (new mongoose.Schema) and implementing the schema using (mongoose.model).
 6. 
     *
 7. 
