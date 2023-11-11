@@ -11,7 +11,7 @@ const middleware = (req, res, next) =>{
     next();
 }   
 
-
+// Page routes
 app.get("/", (req, res) => {
     res.status(200).send("Welcome to Home Page")
 })
