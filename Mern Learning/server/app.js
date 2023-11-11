@@ -1,12 +1,11 @@
-const dotenv = require('dotenv')
-dotenv.config({path: "./config.env"});
-
 const express = require("express");
 const app = express();
+const dotenv = require('dotenv')
+dotenv.config({path: "./config.env"});
 require("./db/conn")
 const PORT = process.env.PORT;
 
-
+// Writing Middleware
 const middleware = (req, res, next) =>{
     console.log("middleware is running");
     next();
