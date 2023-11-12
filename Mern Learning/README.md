@@ -24,6 +24,16 @@
     * Finally add the last ".catch" promise of User.findOne (if that statement can not be executed with technical issue) then display an error message console/res.json
     #### Promises Version
     ```javascript
+            const express = require('express');
+            const router = express.Router();
+
+            require("../db/conn")
+            const User = require("../models/userSchema")
+
+            router.get("/", (req, res) => {
+                res.send("Home page from Express Router");
+            })
+            
             router.post("/register", (req, res) => {
             // Destructuring user data-json to access it more easily
             const {name, email, phone, work, password, cpassword} = req.body;
@@ -54,11 +64,23 @@
                     })
                 }).catch((err)=>{ console.log(err); })
         })
+
+        module.exports = router
     ```
 8. Post Registration Data To MongoDB Atlas DB with Express & Mongoose | Async-Await Version
     * Easiest and Recommended Approach
     #### Async-Await Version
     ```javascript
+            const express = require('express');
+            const router = express.Router();
+
+            require("../db/conn")
+            const User = require("../models/userSchema")
+
+            router.get("/", (req, res) => {
+                res.send("Home page from Express Router");
+            })
+
             router.post("/register", async(req, res) => {
             // Destructuring user data-json to access it more easily
             const {name, email, phone, work, password, cpassword} = req.body;
@@ -87,6 +109,8 @@
                     console.log(err);
                 }
         })
+        
+        module.exports = router
     ```
 9. 
     *
