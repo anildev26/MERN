@@ -35,7 +35,7 @@
             })
             
             router.post("/register", (req, res) => {
-            // Destructuring user data-json to access it more easily
+            // Object Destructuring user data-json to access it more easily
             const {name, email, phone, work, password, cpassword} = req.body;
 
                 // console.log(req.body.name); // before destructuring
@@ -82,7 +82,7 @@
             })
 
             router.post("/register", async(req, res) => {
-            // Destructuring user data-json to access it more easily
+            // Object Destructuring user data-json to access it more easily
             const {name, email, phone, work, password, cpassword} = req.body;
 
                 // console.log(req.body.name); // before destructuring
