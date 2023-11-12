@@ -118,8 +118,28 @@
         1. If any blank email/password submitted then return an error.
         2. If entered email does not exist then return an error (invalid credentials).
         3. Passwords should be matched.
-10. 
-    *
+10. Password Hashing in registeration using Bcrypt.JS
+    * Install bcrypt js into server directory
+    * When we are creating the instance of schema User from models inside register routes and inside the instance fetching all the details of the form fields filled by the user.
+    ```javascript /register-code (routes)
+        const user = new User({name, email, phone, work, password, cpassword}) // instance of schema user to fetch the form details 
+        // [ Before sending the data to get saved on db we need to get the password & cPassword and hash them --> i.e hashing them in "pre" ('save') mode ]      
+        const registerUser = await user.save() // Handle a promise
+    ```
+    * To handle the 'pre' mode we will write the hashing middleware inside userSchema before exporting and adding data into db mongoose model.
+    * Over here .pre method returns a promise and inside the method we will be need of "this" operator and this operator works differently in arrow function or simple function we will use normal function and async to handle the promise.
+    * We don't wanna run this hashing code everytime user edits any field in form, we will only run this when user modifies 'password' field.
+    ```javascript hashing code
+            userSchema.pre("save", async function(next){
+            //console.log("hi from userSchema middleware"); [For cross-checking that our method is getting called or not]
+            if(this.isModified('password')){
+                this.password = await bcrypt.hash(this.password, 12)
+                this.cpassword = await bcrypt.hash(this.cpassword, 12)
+            }
+            next();
+        })
+    ```
+    * Whenever password field is modified by user, form password and confirm password will get hashed by using inbuilt 'bcrypt.hash(password-to-be-hashed, salt-Number-to-be-added)' and the hash password is again stored to the same password field.
 11. 
     *
 
