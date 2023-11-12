@@ -32,7 +32,7 @@
                 // console.log(password); // After destructuring
                 // res.send("You have successfully registered");
                 // res.json({ User1 : req.body });
-                
+
                 if(!name || !email || !phone || !work || !password || !cpassword){
                     return res.status(422).json({error: "Please fill all the information"})
                 }
@@ -54,7 +54,7 @@
         })
     ```
 8. Post Registration Data To MongoDB Atlas DB with Express & Mongoose | Async-Await Version
-    * 
+    * Easiest and Recommended Approach
     #### Async-Await Version
     ```javascript
             router.post("/register", async(req, res) => {
