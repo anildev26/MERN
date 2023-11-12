@@ -25,16 +25,18 @@
     #### Promises Version
     ```javascript
             router.post("/register", (req, res) => {
-            // Destructuring user data json to access it more easily
+            // Destructuring user data-json to access it more easily
             const {name, email, phone, work, password, cpassword} = req.body;
 
                 // console.log(req.body.name); // before destructuring
                 // console.log(password); // After destructuring
+
                 // res.send("You have successfully registered");
                 // res.json({ User1 : req.body });
 
+                // if user keeps any empty field and submit a form then return err from server
                 if(!name || !email || !phone || !work || !password || !cpassword){
-                    return res.status(422).json({error: "Please fill all the information"})
+                    return res.status(422).json({error: "Please fill all the information"}) 
                 }
 
                 User.findOne({email:email}) // returns a promise
@@ -42,7 +44,7 @@
                     if(userExist) {
                         return res.status(422).json({error: "Email already exist"})
                     }
-                    //User : which is db model user uska instance create krke use add krna hoga
+                    //User : which is db designed models/user, jiska instance create krke har ek user ka data add hoga
                     const user = new User({name, email, phone, work, password, cpassword})
                     user.save() // returns a promise
                     .then(()=>{
@@ -58,14 +60,16 @@
     #### Async-Await Version
     ```javascript
             router.post("/register", async(req, res) => {
-            // Destructuring user data json to access it more easily
+            // Destructuring user data-json to access it more easily
             const {name, email, phone, work, password, cpassword} = req.body;
 
                 // console.log(req.body.name); // before destructuring
                 // console.log(password); // After destructuring
+                
                 // res.send("You have successfully registered");
                 // res.json({ User1 : req.body });
 
+                // if user keeps any empty field and submit a form then return err from server
                 if(!name || !email || !phone || !work || !password || !cpassword){
                     return res.status(422).json({error: "Please fill all the information"})
                 }
