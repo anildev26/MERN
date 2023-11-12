@@ -31,6 +31,7 @@ router.post("/register", async(req, res) => {
             }  
 
             const user = new User({name, email, phone, work, password, cpassword})
+            
             const registerUser = await user.save() // Handle a promise
 
             res.status(201).json({message: "User registered successfully, go to login"})
