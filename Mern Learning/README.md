@@ -22,8 +22,38 @@
     * To enter data into database we need to create unique/new instance of our  userSchema on every new user entry (Db schema) ```const user = new User({name, email, phone, work, password, cpassword})```
     * Use ```user.save()``` to send the user entered values to db but this also returns promise so we can find if any entry made to database or not, if entry made then return in ```.then (user registered successfully)``` if data couldn't be added to db ```.catch (Failed to register)```
     * Finally add the last ".catch" promise of User.findOne (if that statement can not be executed with technical issue) then display an error message console/res.json
-8. 
-    *
+    #### Promises Version
+    ```
+            router.post("/register", (req, res) => {
+            // Destruction user data json to access it more easily
+            const {name, email, phone, work, password, cpassword} = req.body;
+                // console.log(name);
+                // console.log(password);
+                // res.send("You have successfully registered");
+                // res.json({ User1 : req.body });
+                if(!name || !email || !phone || !work || !password || !cpassword){
+                    return res.status(422).json({error: "Please fill all the information"})
+                }
+
+                User.findOne({email:email}) // returns a promise
+                .then((userExist) => {
+                    if(userExist) {
+                        return res.status(422).json({error: "Email already exist"})
+                    }
+                    //User : which is db model user uska instance create krke use add krna hoga
+                    const user = new User({name, email, phone, work, password, cpassword})
+                    user.save() // returns a promise
+                    .then(()=>{
+                        res.status(201).json({message: "User registered successfully, go to login"})
+                    }).catch((err)=>{
+                        res.status(500).json({err: "Failed to register user"})
+                    })
+                }).catch((err)=>{ console.log(err); })
+        })
+
+    ```
+8. Post Registration Data To MongoDB Atlas DB with Express & Mongoose | Async-Await Version
+    * 
 9. 
     *
 10. 
