@@ -25,12 +25,14 @@
     #### Promises Version
     ```javascript
             router.post("/register", (req, res) => {
-            // Destruction user data json to access it more easily
+            // Destructuring user data json to access it more easily
             const {name, email, phone, work, password, cpassword} = req.body;
-                // console.log(name);
-                // console.log(password);
+
+                // console.log(req.body.name); // before destructuring
+                // console.log(password); // After destructuring
                 // res.send("You have successfully registered");
                 // res.json({ User1 : req.body });
+                
                 if(!name || !email || !phone || !work || !password || !cpassword){
                     return res.status(422).json({error: "Please fill all the information"})
                 }
@@ -53,6 +55,35 @@
     ```
 8. Post Registration Data To MongoDB Atlas DB with Express & Mongoose | Async-Await Version
     * 
+    #### Async-Await Version
+    ```javascript
+            router.post("/register", async(req, res) => {
+            // Destructuring user data json to access it more easily
+            const {name, email, phone, work, password, cpassword} = req.body;
+
+                // console.log(req.body.name); // before destructuring
+                // console.log(password); // After destructuring
+                // res.send("You have successfully registered");
+                // res.json({ User1 : req.body });
+
+                if(!name || !email || !phone || !work || !password || !cpassword){
+                    return res.status(422).json({error: "Please fill all the information"})
+                }
+
+                // Putting all logical code in [try/catch block] any error in any phase occurs will be handled by catch here:
+                try {
+                    const alreadyRegister = await User.findOne({email:email});  // Handle a promise
+                    if(alreadyRegister) {
+                        return res.status(422).json({error: "Email already exist"})
+                    }  
+                    const user = new User({name, email, phone, work, password, cpassword})
+                    const registerUser = await user.save() // Handle a promise
+                    res.status(201).json({message: "User registered successfully, go to login"}) 
+                } catch(err) {
+                    console.log(err);
+                }
+        })
+    ```
 9. 
     *
 10. 
