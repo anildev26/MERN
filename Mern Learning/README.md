@@ -23,7 +23,7 @@
     * Use ```user.save()``` to send the user entered values to db but this also returns promise so we can find if any entry made to database or not, if entry made then return in ```.then (user registered successfully)``` if data couldn't be added to db ```.catch (Failed to register)```
     * Finally add the last ".catch" promise of User.findOne (if that statement can not be executed with technical issue) then display an error message console/res.json
     #### Promises Version
-    ```
+    ```javascript:
             router.post("/register", (req, res) => {
             // Destruction user data json to access it more easily
             const {name, email, phone, work, password, cpassword} = req.body;
