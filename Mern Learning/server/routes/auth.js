@@ -42,15 +42,22 @@ router.post("/register", async(req, res) => {
 })
 
 router.post("/signin", async (req, res) => {
-    const {email, password} = req.body;
-
-    // res.json({ "message": "Success" })
-
-    if (!email || !password){
-        return res.status(422).json({error: "Invalid Credentials"})
-    }
 
     try {
+        const {email, password} = req.body; // object destructuring
+
+        if (!email || !password){
+            return res.status(400).json({error: "Please fill the data"})
+        }
+        
+        const userLogin = await User.findOne({ email:email });
+        console.log(userLogin); // displays the whole document of matched email
+        
+        if(!userLogin){
+            res.status(400).json({ "error":"Invalid Credentials" })
+        }else{
+            res.json({"message": "Login Successfull"})
+        }
         
     } catch (err) {
         console.log(err);
