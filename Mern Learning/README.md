@@ -112,8 +112,12 @@
         
         module.exports = router
     ```
-9. 
-    *
+9. Create a Login Route
+    * Creating similar login route via post method and async-await
+    * Validating 3 things in the login form:
+        1. If any blank email/password submitted then return an error.
+        2. If entered email does not exist then return an error (invalid credentials).
+        3. Passwords should be matched.
 10. 
     *
 11. 
