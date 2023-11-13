@@ -121,16 +121,16 @@
 10. Password Hashing in registeration using Bcrypt.JS
     * Install bcrypt js into server directory
     * When we are creating the instance of schema User from models inside register routes and inside the instance fetching all the details of the form fields filled by the user.
-    #### /register-code (routes)
+    #### Route : /register
     ```javascript 
         const user = new User({name, email, phone, work, password, cpassword}) // instance of schema user to fetch the form details 
         // [ Before sending the data to get saved on db we need to get the password & cPassword and hash them --> i.e hashing them in "pre" ('save') mode ]      
         const registerUser = await user.save() // Handle a promise
     ```
-    * To handle the 'pre' mode we will write the hashing middleware inside userSchema before exporting and adding data into db mongoose model.
+    * To handle the 'pre' mode we will write the hashing middleware inside ```userSchema``` before exporting and adding data into db mongoose model.
     * Over here .pre method returns a promise and inside the method we will be need of "this" operator and this operator works differently in arrow function or simple function we will use normal function and async to handle the promise.
     * We don't wanna run this hashing code everytime user edits any field in form, we will only run this when user modifies 'password' field.
-    #### hashing code
+    #### Hashing code
     ```javascript 
             userSchema.pre("save", async function(next){
             //console.log("hi from userSchema middleware"); [For cross-checking that our method is getting called or not]
