@@ -28,15 +28,14 @@ router.post("/register", async(req, res) => {
             
             if(alreadyRegister) {
                 return res.status(422).json({error: "Email already exist"})
-            }  
-
-            const user = new User({name, email, phone, work, password, cpassword})
-            
-            const registerUser = await user.save() // Handle a promise
-
-            res.status(201).json({message: "User registered successfully, go to login"})
-
-            
+            }else if(password != cpassword){
+                return res.status(422).json({error: "Password does not match"})
+            }else {
+                const user = new User({name, email, phone, work, password, cpassword})
+                //yaha pe horahi hai hashing middleware from models/userSchema
+                const registerUser = await user.save() // Handle a promise
+                res.status(201).json({message: "User registered successfully, go to login"})
+            }
         } catch(err){
             console.log(err);
         }
