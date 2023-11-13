@@ -121,7 +121,8 @@
 10. Password Hashing in registeration using Bcrypt.JS
     * Install bcrypt js into server directory
     * When we are creating the instance of schema User from models inside register routes and inside the instance fetching all the details of the form fields filled by the user.
-    ```javascript /register-code (routes)
+    #### /register-code (routes)
+    ```javascript 
         const user = new User({name, email, phone, work, password, cpassword}) // instance of schema user to fetch the form details 
         // [ Before sending the data to get saved on db we need to get the password & cPassword and hash them --> i.e hashing them in "pre" ('save') mode ]      
         const registerUser = await user.save() // Handle a promise
@@ -129,7 +130,8 @@
     * To handle the 'pre' mode we will write the hashing middleware inside userSchema before exporting and adding data into db mongoose model.
     * Over here .pre method returns a promise and inside the method we will be need of "this" operator and this operator works differently in arrow function or simple function we will use normal function and async to handle the promise.
     * We don't wanna run this hashing code everytime user edits any field in form, we will only run this when user modifies 'password' field.
-    ```javascript hashing code
+    #### hashing code
+    ```javascript 
             userSchema.pre("save", async function(next){
             //console.log("hi from userSchema middleware"); [For cross-checking that our method is getting called or not]
             if(this.isModified('password')){
@@ -139,7 +141,7 @@
             next();
         })
     ```
-    * Whenever password field is modified by user, form password and confirm password will get hashed by using inbuilt 'bcrypt.hash(password-to-be-hashed, salt-Number-to-be-added)' and the hash password is again stored to the same password field.
+    * Whenever password field is modified by user, form password and confirm password will get hashed by using inbuilt ```bcrypt.hash(password-to-be-hashed, salt-Number-to-be-added)``` and the hash password is again stored to the same password field.
     * Note :- Before saving the registeration form of any ever this 'pre' function will always be called because an argument 'save' is given to it which means before/pre saving (save) the data always runs this method. That's the reason wherever it will be called it will look only changes made in 'password' field everything else is ignored. 
 11. 
     *
