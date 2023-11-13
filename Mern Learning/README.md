@@ -140,6 +140,7 @@
         })
     ```
     * Whenever password field is modified by user, form password and confirm password will get hashed by using inbuilt 'bcrypt.hash(password-to-be-hashed, salt-Number-to-be-added)' and the hash password is again stored to the same password field.
+    * Note :- Before saving the registeration form of any ever this 'pre' function will always be called because an argument 'save' is given to it which means before/pre saving (save) the data always runs this method. That's the reason wherever it will be called it will look only changes made in 'password' field everything else is ignored. 
 11. 
     *
 
