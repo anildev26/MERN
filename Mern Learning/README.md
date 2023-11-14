@@ -143,6 +143,7 @@
     ```
     * Whenever password field is modified by user, form password and confirm password will get hashed by using inbuilt ```bcrypt.hash(password-to-be-hashed, salt-Number-to-be-added)``` and the hash password is again stored to the same password field.
     * Note :- Before saving the registeration form of any ever this 'pre' function will always be called because an argument 'save' is given to it which means before/pre saving (save) the data always runs this method. That's the reason wherever it will be called it will look only changes made in 'password' field everything else is ignored. 
-11. 
-    *
+11. Check Hash Password and Email & Implementing Login Functionality
+    * Already when we're checking if email exist or not, overthere the db returns the whole document of matched email from that stored returned document we will check if current entered password of user matches the database hashed password or not.
+    * User enters the normal string password and our users database contains the hashed password of all the registered users to compare these both just like 'bcrypt.hash' convert the string password to hash, bcrypt.js also has a method ```bcrypt.compare(user-current-entered-password, returned-database-document-variableName.password)``` and this will compare the currently entered user password in sign-in page with already stored database password.
 
