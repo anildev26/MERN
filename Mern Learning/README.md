@@ -148,3 +148,5 @@
     * User enters the normal string password and our users database contains the hashed password of all the registered users to compare these both just like 'bcrypt.hash' convert the string password to hash, bcrypt.js also has a method ```bcrypt.compare(user-current-entered-password, returned-database-document-variableName.password)``` and this will compare the currently entered user password in sign-in page with already stored database password.
 12. Another day passed did nothing
 13. One more day wasted , +1 more wasted ,Sher  ne aj fir kuch nahi kia
+hi
+
