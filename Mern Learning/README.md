@@ -147,6 +147,7 @@
     * Already when we're checking if email exist or not, overthere the db returns the whole document of matched email from that stored returned document we will check if current entered password of user matches the database hashed password or not.
     * User enters the normal string password and our users database contains the hashed password of all the registered users to compare these both just like 'bcrypt.hash' convert the string password to hash, bcrypt.js also has a method ```bcrypt.compare(user-current-entered-password, returned-database-document-variableName.password)``` and this will compare the currently entered user password in sign-in page with already stored database password.
 12. Another day passed did nothing
-13. One more day wasted , +1 more wasted ,Sher  ne aj fir kuch nahi kia
+13. One more day wasted , +1 more wasted ,Sher  ne aj fir kuch nahi kia, fir ek din mere lofe me koi changes nahi hue
+
 hi
 
